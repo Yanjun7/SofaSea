@@ -49,14 +49,25 @@ namespace SofaSea.Controllers
             var menbershipTypes = _context.MembershipTypes.ToList();
             var viewModel = new CustomerFormViewModel
             {
+                Customer = new Customer(),
                 MembershipTypes = menbershipTypes
             };
             return View("CustomerForm",viewModel);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new CustomerFormViewModel
+                {
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+                return View("CustomerForm",viewModel);            
+            }
             if (customer.ID == 0)
             {
                 _context.Customers.Add(customer);

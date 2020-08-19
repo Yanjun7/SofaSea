@@ -27,6 +27,7 @@ namespace SofaSea.Models
         public DateTime DateAdded { get; set; }
    
         [Display(Name = "Number in stock")]
+        [Range(1,20)]
         public byte NumberInStock { get; set; }
     }
 }
