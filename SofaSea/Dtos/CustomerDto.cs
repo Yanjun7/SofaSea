@@ -16,8 +16,9 @@ namespace SofaSea.Dtos
         public string Name { get; set; }
         public bool IsSubscribedToNewsLetter { get; set; }
         public byte MembershipTypeId { get; set; }
+        public MembershipTypeDto MembershipType { get; set; }
 
-       // [Min18YearsIfAMember]
+        // [Min18YearsIfAMember]
         public DateTime? Birthdate { get; set; }
     }
 }

@@ -13,9 +13,12 @@ namespace SofaSea.App_Start
         public MappingProfile()
         {
             Mapper.CreateMap<Customer, CustomerDto>();
+            Mapper.CreateMap<Movie, MovieDto>();
+            Mapper.CreateMap<MembershipType, MembershipTypeDto>();
+
             Mapper.CreateMap<CustomerDto, Customer>().ForMember(c => c.ID, opt => opt.Ignore());
-            Mapper.CreateMap<Movie,MovieDto>();
             Mapper.CreateMap<MovieDto, Movie>().ForMember(c=>c.Id, opt=>opt.Ignore());
+           
         }
         
     }

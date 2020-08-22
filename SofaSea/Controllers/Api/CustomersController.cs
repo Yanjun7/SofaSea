@@ -11,6 +11,7 @@ using HttpPostAttribute = System.Web.Http.HttpPostAttribute;
 using HttpPutAttribute = System.Web.Http.HttpPutAttribute;
 using SofaSea.Dtos;
 using AutoMapper;
+using System.Data.Entity;
 
 namespace SofaSea.Controllers.Api
 {
@@ -25,7 +26,10 @@ namespace SofaSea.Controllers.Api
         //Get /api/customers
         public IEnumerable<CustomerDto> GetCustomers()
         {
-            return _context.Customers.ToList().Select(Mapper.Map<Customer,CustomerDto>);
+            return _context.Customers
+                .Include(c=>c.MembershipType)
+                .ToList()
+                .Select(Mapper.Map<Customer,CustomerDto>);
         }
 
         //Get /api/customers/1
