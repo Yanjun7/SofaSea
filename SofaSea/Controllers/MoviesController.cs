@@ -41,7 +41,7 @@ namespace SofaSea.Controllers
 
         public ViewResult Index()
         {
-            if(User.IsInRole("CanManageMovies"))
+            if(User.IsInRole(RoleName.CanManageMovies))
                 return View("List");
             else
                 return View("ReadOnlyList");
@@ -56,6 +56,7 @@ namespace SofaSea.Controllers
             return View(movie);
         }
 
+        [Authorize(Roles =RoleName.CanManageMovies)]
         public ViewResult New()
         {
             var genres = _context.Genres.ToList();
