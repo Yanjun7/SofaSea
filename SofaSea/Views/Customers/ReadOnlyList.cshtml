@@ -1,0 +1,48 @@
+﻿@model IEnumerable<SofaSea.Models.Customer>
+
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+
+<table id="customers" class="table table-bordered table-hover">
+    <tread>
+        <tr>
+            <th>Customer</th>
+            <th>Discount Type</th>
+            
+        </tr>
+    </tread>
+    <tbody>
+
+    </tbody>
+</table>
+
+@section scripts
+{
+   <script>
+       $(document).ready(function () {
+          var table =  $("#customers").DataTable({
+               ajax: {
+                   url: "/api/customers",
+                   dataSrc: ""
+               },
+               columns: [
+                   {
+                       data: "name",
+                       
+                   },
+                   {
+                        data: "membershipType.name"
+                   },
+                  
+               ]
+           });
+
+          
+       });
+    </script> 
+}
+

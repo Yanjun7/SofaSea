@@ -25,8 +25,12 @@ namespace SofaSea.Controllers
         }
 
         public ActionResult Index()
-        {   
-            return View();
+        {
+            
+            if (User.IsInRole(RoleName.CanManageMovies))
+                return View("List");
+
+            return View("ReadOnlyList");
         }
 
         public ActionResult Details(int id)
@@ -42,6 +46,7 @@ namespace SofaSea.Controllers
             
         }
 
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var menbershipTypes = _context.MembershipTypes.ToList();
@@ -55,6 +60,7 @@ namespace SofaSea.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Save(Customer customer)
         {
             if (!ModelState.IsValid)
@@ -83,6 +89,8 @@ namespace SofaSea.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index","Customers");
         }
+
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Edit(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.ID == id);

@@ -1,17 +1,15 @@
-﻿using SofaSea.Models;
+﻿
+using SofaSea.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Mvc;
-using HttpDeleteAttribute = System.Web.Http.HttpDeleteAttribute;
-using HttpPostAttribute = System.Web.Http.HttpPostAttribute;
-using HttpPutAttribute = System.Web.Http.HttpPutAttribute;
 using SofaSea.Dtos;
 using AutoMapper;
 using System.Data.Entity;
+
 
 namespace SofaSea.Controllers.Api
 {
@@ -45,6 +43,7 @@ namespace SofaSea.Controllers.Api
 
         //POST /api/customers
         [HttpPost]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public IHttpActionResult CreateCustomer(CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
@@ -60,6 +59,7 @@ namespace SofaSea.Controllers.Api
 
         [HttpPut]
         //PUT /api/customers/1
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public IHttpActionResult UpdateCustomer(int id, CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
@@ -79,6 +79,7 @@ namespace SofaSea.Controllers.Api
 
         //DELETE /api/customers/1
         [HttpDelete]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public IHttpActionResult DeleteCustomer(int id)
         {
             var customerInDb = _context.Customers.SingleOrDefault(c => c.ID == id);
