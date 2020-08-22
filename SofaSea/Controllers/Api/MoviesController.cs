@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Web.Http;
 using SofaSea.Dtos;
 using AutoMapper;
+using System.Data.Entity;
 namespace SofaSea.Controllers.Api
 {
     public class MoviesController : ApiController
@@ -21,7 +22,10 @@ namespace SofaSea.Controllers.Api
         //Get /api/customers
         public IEnumerable<MovieDto> GetCustomers()
         {
-            return _context.Movies.ToList().Select(Mapper.Map<Movie, MovieDto>);
+            return _context.Movies.
+                Include(m=>m.Genre).
+                ToList().
+                Select(Mapper.Map<Movie, MovieDto>);
         }
 
         //Get /api/customers/1
