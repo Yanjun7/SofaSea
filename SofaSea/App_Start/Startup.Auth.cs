@@ -54,9 +54,9 @@ namespace SofaSea
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "315906859749592",
+               appSecret: "9c040032793995fb7a1ab5422d51f579");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
