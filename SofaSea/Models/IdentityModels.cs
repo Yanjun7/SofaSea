@@ -4,6 +4,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using SofaSea.Models;
 
 namespace SofaSea.Models
 {
@@ -34,6 +35,8 @@ namespace SofaSea.Models
         public DbSet<MembershipType> MembershipTypes { get; set; }
 
         public DbSet<Genre> Genres { get; set; }
+
+        //public DbSet<Rental> Rental { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
