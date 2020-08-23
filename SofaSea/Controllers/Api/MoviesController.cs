@@ -23,7 +23,9 @@ namespace SofaSea.Controllers.Api
         public IHttpActionResult GetCustomers(string query)
         {
             var moviesQuery = _context.Movies.
-                Include(m => m.Genre);
+                Include(m => m.Genre).
+                Where(m => m.NumberAvailable > 0);
+
             if (!String.IsNullOrWhiteSpace(query))
                 moviesQuery = moviesQuery.Where(c => c.Name.Contains(query));
             var moviesDto = moviesQuery.
