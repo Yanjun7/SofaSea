@@ -14,8 +14,8 @@ namespace SofaSea.Models
         public DateTime? DateReturned { get; set; }
 
         [Required]
-        public Customer customer { get; set; }
+        public Customer Customer { get; set; }
         [Required]
-        public Movie movie { get; set; }
+        public Movie Movie { get; set; }
     }
 }

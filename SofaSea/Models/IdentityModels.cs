@@ -36,7 +36,7 @@ namespace SofaSea.Models
 
         public DbSet<Genre> Genres { get; set; }
 
-        //public DbSet<Rental> Rental { get; set; }
+        public DbSet<Rental> Rental { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
