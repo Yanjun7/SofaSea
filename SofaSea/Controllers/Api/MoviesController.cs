@@ -20,12 +20,16 @@ namespace SofaSea.Controllers.Api
         }
 
         //Get /api/customers
-        public IEnumerable<MovieDto> GetCustomers()
+        public IHttpActionResult GetCustomers(string query)
         {
-            return _context.Movies.
-                Include(m=>m.Genre).
+            var moviesQuery = _context.Movies.
+                Include(m => m.Genre);
+            if (!String.IsNullOrWhiteSpace(query))
+                moviesQuery = moviesQuery.Where(c => c.Name.Contains(query));
+            var moviesDto = moviesQuery.
                 ToList().
                 Select(Mapper.Map<Movie, MovieDto>);
+            return Ok(moviesDto);
         }
 
         //Get /api/customers/1
